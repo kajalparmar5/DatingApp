@@ -20,6 +20,7 @@ namespace API.Controllers
         public async Task <ActionResult<IEnumerable<AppUser>>>GetUsers()
         {
                  var users=await _context.Users.ToListAsync();
+                 Thread.Sleep(3000);
                  return users;
         }
          [HttpGet("{id}")]

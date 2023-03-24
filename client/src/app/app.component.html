@@ -1,0 +1,11 @@
+
+<h1>{{title}}</h1>
+<p>
+  {{user | json}}
+</p>
+<ul class="list-group" *ngFor="let list of user">
+  <li class="list-group-item">
+    {{list.id}}-{{list.userName}}
+  </li>
+</ul>
+<router-outlet></router-outlet>
