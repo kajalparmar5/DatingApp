@@ -1,10 +1,14 @@
 {
     "cSpell.words": [
+        "bootswatch",
         "currentusersource",
         "Getuser",
         "hmac",
         "HMACSHA",
         "isloggedin",
-        "tokenservice"
+        "Toastr",
+        "tokenservice",
+        "toster",
+        "tostr"
     ]
 }

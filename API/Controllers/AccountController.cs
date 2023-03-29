@@ -26,7 +26,7 @@ namespace API.Controllers
         }
         [HttpPost("register")]
 
-        public async Task<ActionResult<UserDTO>> Register([FromBody]RegisterDto registerDTO)
+        public async Task<ActionResult<UserDTO>> Register(RegisterDto registerDTO)
         {
             
             if (await UserExist(registerDTO.Username)) 
@@ -35,18 +35,19 @@ namespace API.Controllers
             return BadRequest("Please enter a username");
         }
         return BadRequest("Username is taken");
+        
     }
 
     using var hmac = new HMACSHA512();
 
     // Generate a unique salt for the user
-    var salt = Encoding.UTF8.GetBytes($"{registerDTO.Username}:{Guid.NewGuid()}");
+  // var salt = Encoding.UTF8.GetBytes($"{registerDTO.Username}:{Guid.NewGuid()}");
 
     var user = new AppUser
     {
         UserName = registerDTO.Username.ToLower(),
-        PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDTO.Password + Convert.ToBase64String(salt))),
-        PasswordSalt = salt
+        PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDTO.Password)),
+        PasswordSalt = hmac.Key
     };
 
     _context.Users.Add(user);
@@ -59,11 +60,18 @@ namespace API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<UserDTO>> Login([FromBody] LoginDTO loginDTO)
+        public async Task<ActionResult<UserDTO>> Login(LoginDTO loginDTO)
         {
             var user = await _context.Users.SingleOrDefaultAsync(x =>
                 x.UserName == loginDTO.Username);
-            if (user == null) return Unauthorized();
+                
+            // if (user == null) return Unauthorized();
+
+              if (user == null) 
+                {
+                    return Unauthorized("Invalid username");
+                }
+
             using var hmac = new HMACSHA512(user.PasswordSalt);
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDTO.Password));
             for (int i = 0; i < computedHash.Length; i++)

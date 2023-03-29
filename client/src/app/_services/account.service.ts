@@ -21,7 +21,20 @@ export class AccountService {
           if(user){
             localStorage.setItem('user',JSON.stringify(user));
             this.currentUserSource.next(user)
+
           }
+          return user
+        })
+      )
+    }
+    register(model:User){
+      return this.http.post<User>('http://localhost:5258/api/account/register',model).pipe(
+        map(user=>{
+          if(user){
+            localStorage.setItem('user',JSON.stringify(user))
+            this.currentUserSource.next(user)
+          }
+          return user
         })
       )
     }

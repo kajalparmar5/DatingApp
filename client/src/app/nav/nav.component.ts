@@ -42,6 +42,7 @@ constructor(private router:Router,public service:AccountService,){}
   }
   onLogout(){
     this.service.logout()
+    this.router.navigate(['/'])
     //this.isLoggedIn = false;
     //this.auth.setIsLoggedIn(false);
   }

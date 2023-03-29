@@ -11,6 +11,7 @@
             <label for="username">UserName</label>
             <input type="text" name="username" [(ngModel)]="data.UserName" class="form-control">
           </div>
+          
           <div class="form-group">
             <label for="password">Password</label>
             <input type="password" name="password" [(ngModel)]="data.password"  class="form-control">
@@ -21,7 +22,7 @@
             <label class="form-check-label" for="checkbox">Remember Me</label>
           </div> -->
           <button class="btn me-2 btn-success" style="margin-top: 5px;" type="submit">Register</button>
-          <button class="btn btn-class" style="margin-top: 5px;" type="button">cancle</button>
+          <button class="btn btn-class" style="margin-top: 5px;" type="button" (click)="cancel()">cancle</button>
 
         </form>
       </div>

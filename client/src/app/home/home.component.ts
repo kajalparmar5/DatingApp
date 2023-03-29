@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { User } from '../_models/user';
+import { AccountService } from '../_services/account.service';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +11,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   flag=false
+  
   user: any=[]
+  currentUser$:Observable<User|null>=of(null)
 
-  constructor(private http:HttpClient){}
+  constructor(private http:HttpClient,private service:AccountService){}
   ngOnInit() {
+    this.currentUser$=this.service.currentUser$
     this.getUsers()
   }
   registerToggle(){
@@ -22,6 +28,9 @@ export class HomeComponent implements OnInit {
       this.user = res;
       console.log(this.user);
     });
+  }
+  cancelRegisterMode(event :boolean){
+        this.flag=event
   }
 
 }
