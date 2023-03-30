@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./test-error.component.css']
 })
 export class TestErrorComponent implements OnInit {
+  ValidationError:string[]=[];
+
   constructor(private http:HttpClient){
 
   }
@@ -74,7 +76,7 @@ export class TestErrorComponent implements OnInit {
       },
       error:error=>{
         console.log(error);
-        
+        this. ValidationError=error
       }
     })
   }

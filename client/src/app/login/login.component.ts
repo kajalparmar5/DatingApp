@@ -31,17 +31,17 @@ export class LoginComponent implements OnInit {
         // this.toster.error(error.error);
         // console.log(error);
 
-        if (error.error.status == 400) {
-          if (error.error.errors.Username) {
-            this.toster.error(error.error.errors.Username);
-          } else {
-            this.toster.error(error.error.errors.Password);
-          }
-        } else {
+        // if (error.error.status == 400) {
+        //   if (error.error.errors.Username) {
+        //     this.toster.error(error.error.errors.Username);
+        //   } else {
+        //     this.toster.error(error.error.errors.Password);
+        //   }
+        // } else {
          
-          this.toster.error(error.error);
-          console.log(error);
-        }
+        //   this.toster.error(error.error);
+        //   console.log(error);
+        // }
       },
     });
   }

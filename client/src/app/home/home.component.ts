@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   constructor(private http:HttpClient,private service:AccountService){}
   ngOnInit() {
     this.currentUser$=this.service.currentUser$
-    this.getUsers()
+    // this.getUsers()
   }
   registerToggle(){
     this.flag=!this.flag

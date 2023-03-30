@@ -7,6 +7,8 @@ import { MemberDetailsComponent } from './member/member-details/member-details.c
 import { ListComponent } from './list/list.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AuthGuard } from './_guard/auth.guard';
+import { NotFoundComponent } from './error/not-found/not-found.component';
+import { ServerErrorComponent } from './error/server-error/server-error.component';
 
 const routes: Routes = [
   { path:'',component:HomeComponent},
@@ -15,7 +17,9 @@ const routes: Routes = [
   { path:'members/:id',component:MemberDetailsComponent,canActivate:[AuthGuard] },
   { path:'list',component:ListComponent,canActivate:[AuthGuard]},
   { path:'messages',component:MessagesComponent,canActivate:[AuthGuard]},
-  { path:'**',component:HomeComponent ,pathMatch:"full"}
+  { path: 'not-found', component:NotFoundComponent },
+  { path: 'server-error', component:ServerErrorComponent },
+  { path:'**',component:NotFoundComponent ,pathMatch:"full"}
 ];
 
 @NgModule({
