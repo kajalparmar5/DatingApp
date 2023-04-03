@@ -1,4 +1,5 @@
 
+using System.Security.Claims;
 using API.Data;
 using API.DTOs;
 using API.entities;
@@ -35,10 +36,20 @@ namespace API.Controllers
          [HttpGet("{username}")]
          public async Task <ActionResult<MemberDTO>>Getuser(string username){
 
-           return await _UserRepository.GetMemberAsync(username);
-          
-           
+           return await _UserRepository.GetMemberAsync(username); 
          }
-        
+         [HttpPut]
+         public async Task <ActionResult> UpdateUser(MemberUpdateDTO memberUpdateDTO)
+        {
+            var username=User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var user=await _UserRepository.GetUserByUsernameAsync(username);
+            if(user==null) return NotFound();
+
+            _mapper.Map(memberUpdateDTO,user);
+
+            if(await _UserRepository.SaveAllAsync()) return NoContent();
+
+            return BadRequest("failed to update user");
     }
+}
 }

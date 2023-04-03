@@ -9,12 +9,15 @@ import { MessagesComponent } from './messages/messages.component';
 import { AuthGuard } from './_guard/auth.guard';
 import { NotFoundComponent } from './error/not-found/not-found.component';
 import { ServerErrorComponent } from './error/server-error/server-error.component';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { PreventUnsaveChangesGuard } from './_guard/prevent-unsave-changes.guard';
 
 const routes: Routes = [
   { path:'',component:HomeComponent},
   { path: 'login', component:LoginComponent },
   { path:'members',component:MemberListComponent,canActivate:[AuthGuard]},
-  { path:'members/:id',component:MemberDetailsComponent,canActivate:[AuthGuard] },
+  { path:'members/:username',component:MemberDetailsComponent,canActivate:[AuthGuard] },
+  { path:'member/:edit',component:MemberEditComponent,canDeactivate:[PreventUnsaveChangesGuard] },
   { path:'list',component:ListComponent,canActivate:[AuthGuard]},
   { path:'messages',component:MessagesComponent,canActivate:[AuthGuard]},
   { path: 'not-found', component:NotFoundComponent },

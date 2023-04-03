@@ -26,16 +26,31 @@
         </ng-container>
        
 
-        <div class="dropdown" *ngIf="(currentUser$|async) as currentUser">
-          <a class="btn btn-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <!-- <div class="dropdown" *ngIf="(currentUser$|async) as currentUser" dropdown>
+          <a class="btn btn-dark dropdown-toggle" dropdownToggle   role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Welcome {{currentUser.username|uppercase}}
           </a>
-        
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Edit profile</a></li>
+          <ul class="dropdown-menu" *dropdown>
+            <li><a class="dropdown-item" routerLink="/member/edit" >Edit profile</a></li>
             <li><a class="dropdown-item" (click)="onLogout()">logout </a></li>
           </ul>
-        </div>
+        </div> -->
+        <div
+      class="dropdown"
+      *ngIf="(currentUser$|async) as currentUser"
+      dropdown
+    >
+      <a class="dropdown-toggle text-light text-decoration-none" dropdownToggle
+        >Welcome {{ currentUser.username | uppercase }}</a
+      >
+
+      <div class="dropdown-menu my-3" *dropdownMenu>
+        <a class="dropdown-item" routerLink="/member/edit">Edit Profile</a>
+        <a class="dropdown-item" (click)="onLogout()">Log out</a>
+      </div>
+    </div>
+
+
 
         <form class="d-flex" *ngIf="!(currentUser$|async)">
           <button class="btn  btn-dark" type="button" (click)="onLogin()">Login</button>
