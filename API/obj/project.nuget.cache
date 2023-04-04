@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZAbqIbEiQZr7AqQLjVchoafC6XRiVRZ8GD4c7GOmcNCxU6/EmVaIN1s2Q1Dy0PO+Va0mIjcJ1yMVVhXfTLT8oQ==",
+  "dgSpecHash": "IE77unQILyDcantELe5+rbdPTvB5cG+0dv7Fg1/lfUJeuW4Ga/2flPjHbYGKN6BcsPXdOpQv0xf0CdWoVnJa3g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\TechExtensor-306\\Desktop\\work\\dotnet\\demo\\datingApp\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\TechExtensor-306\\Desktop\\work\\dotnet\\demo\\datingApp\\api\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\TechExtensor-306\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\TechExtensor-306\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

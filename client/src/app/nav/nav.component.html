@@ -1,32 +1,31 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark " style="background-color: #eb6864;">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Dating App</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        
-        <ng-container>
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="currentUser$|async">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink="/members" routerLinkActive="active">Matches</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/list" routerLinkActive="active">List</a>
-            </li>
-            
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
-            </li>
-            <li class="nav-item" (click)=" onLogout()">
-              <a class="nav-link">Logout</a>
-            </li>
-          </ul>
-        </ng-container>
-       
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #eb6864">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Dating App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <!-- <div class="dropdown" *ngIf="(currentUser$|async) as currentUser" dropdown>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ng-container>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="currentUser$ | async">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/members" routerLinkActive="active">Matches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/list" routerLinkActive="active">List</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
+          </li>
+          <li class="nav-item" (click)="onLogout()">
+            <a class="nav-link">Logout</a>
+          </li>
+        </ul>
+      </ng-container>
+
+      <!-- <div class="dropdown" *ngIf="(currentUser$|async) as currentUser" dropdown>
           <a class="btn btn-dark dropdown-toggle" dropdownToggle   role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Welcome {{currentUser.username|uppercase}}
           </a>
@@ -35,29 +34,24 @@
             <li><a class="dropdown-item" (click)="onLogout()">logout </a></li>
           </ul>
         </div> -->
-        <div
-      class="dropdown"
-      *ngIf="(currentUser$|async) as currentUser"
-      dropdown
-    >
-      <a class="dropdown-toggle text-light text-decoration-none" dropdownToggle
-        >Welcome {{ currentUser.username | uppercase }}</a
-      >
+      <div class="dropdown" *ngIf="currentUser$ | async as currentUser" dropdown>
 
-      <div class="dropdown-menu my-3" *dropdownMenu>
-        <a class="dropdown-item" routerLink="/member/edit">Edit Profile</a>
-        <a class="dropdown-item" (click)="onLogout()">Log out</a>
+        <img src="{{ currentUser.photoUrl }}" alt="user photo" />
+
+        <a class="dropdown-toggle text-light text-decoration-none" dropdownToggle>
+          Welcome {{ currentUser.username | uppercase }}</a>
+
+        <div class="dropdown-menu my-3" *dropdownMenu>
+          <a class="dropdown-item" routerLink="/member/edit">Edit Profile</a>
+          <a class="dropdown-item" (click)="onLogout()">Log out</a>
+        </div>
       </div>
+
+      <form class="d-flex" *ngIf="!(currentUser$ | async)">
+        <button class="btn btn-dark" type="button" (click)="onLogin()">
+          Login
+        </button>
+      </form>
     </div>
-
-
-
-        <form class="d-flex" *ngIf="!(currentUser$|async)">
-          <button class="btn  btn-dark" type="button" (click)="onLogin()">Login</button>
-        </form>
-      </div>
-    </div>
-  </nav>
-
- 
- 
+  </div>
+</nav>
